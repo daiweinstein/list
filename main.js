@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
     const lista = document.querySelector(".lista")
 
     const anterioresItems = []
-    
-    button.addEventListener("click", function() {
+
+    function agregarItem() {
         const itemDelUsuario = input.value
         
         if (itemDelUsuario !== "") { //que el texto que se ingrese no esté vacío
@@ -33,5 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
             lista.appendChild(nuevoElemento) 
             }
         }
+    }
+
+    input.onkeydown = function(event) {
+        if (event.key === "Enter") {
+            agregarItem()
+        }
+    }
+    
+    button.addEventListener("click", function() {
+        agregarItem()
     })
 })
