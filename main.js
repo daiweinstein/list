@@ -21,17 +21,23 @@ document.addEventListener("DOMContentLoaded", function () {
     function agregarItem() {
         const itemDelUsuario = input.value
         
-        if (itemDelUsuario !== "") { //que el texto que se ingrese no esté vacío
-        const loIngresoAntes = buscarEnLista(anterioresItems, itemDelUsuario)
-
-            if(!loIngresoAntes) {
-                anterioresItems.push(itemDelUsuario) 
-
+        if (!anterioresItems.includes(itemDelUsuario)) { 
+            anterioresItems.push(itemDelUsuario)
+            
             const nuevoElemento = document.createElement("li")
-            nuevoElemento.innerHTML = input.value
+            nuevoElemento.append(itemDelUsuario)
+
+            const botonBorrar = document.createElement("button")
+            botonBorrar.innerHTML = "X"
+
+            botonBorrar.onclick = function() {
+                anterioresItems.splice(anterioresItems.indexOf(itemDelUsuario), 1)
+                lista.removeChild(nuevoElemento)
+            }
+
+            nuevoElemento.append(botonBorrar)
             
             lista.appendChild(nuevoElemento) 
-            }
         }
     }
 
